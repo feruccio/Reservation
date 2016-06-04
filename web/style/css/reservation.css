@@ -1,0 +1,22 @@
+html, body {
+	margin: 0;
+	height: 100%;
+	background: #E3F1F9;
+}
+
+.main {
+	min-height: 100%;
+	padding-bottom: 60px;
+	box-sizing: border-box;
+}
+
+.footer {
+	min-height: 40px;
+	margin-top: -40px;
+	background-color: #A2ABB3;
+}
+
+.header {
+	background-color: #A2ABB3;
+	min-height: 50px;
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 1.3//EN"
+        "http://struts.apache.org/dtds/tiles-config_1_3.dtd">
+
+<tiles-definitions>	
+	<definition name=".main" template="/pages/templates/layout.jsp">
+		<put name="header" value="/pages/header.jsp"></put>
+		<put name="footer" value="/pages/footer.jsp"></put>
+	</definition>
+	<definition name=".main.auth" extends=".main">
+		<put name="header" value="/pages/header-auth.jsp"></put>
+	</definition>
+</tiles-definitions>

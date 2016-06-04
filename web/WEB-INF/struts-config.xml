@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    
+<!DOCTYPE struts-config PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+	"http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+	
+	<form-beans>
+		<form-bean name="LoginForm" type="com.haurylenka.projects.reservation.forms.LoginForm"/>
+	</form-beans>
+	
+	<action-mappings>
+		<action path="/login" type="com.haurylenka.projects.reservation.actions.LoginAction"
+				name="LoginForm"
+				scope="request"
+				validate="true"
+				input="/pages/login.jsp">
+			<forward name="success" path="/pages/auth/reservation.jsp"/>
+		</action>
+		
+		<action path="/auth/logout" type="com.haurylenka.projects.reservation.actions.LogoutAction">
+			<forward name="success" path="/index.jsp"/>
+		</action>
+	</action-mappings>
+	
+	<message-resources parameter="Application"/>
+	
+	<plug-in className="org.apache.struts.tiles.TilesPlugin" >
+		<set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml"/>
+	</plug-in>
+	
+</struts-config>
