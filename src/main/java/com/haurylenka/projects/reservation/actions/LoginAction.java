@@ -12,6 +12,8 @@ import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 
 import com.haurylenka.projects.reservation.beans.User;
+import com.haurylenka.projects.reservation.exceptions.ReservationException;
+import com.haurylenka.projects.reservation.exceptions.UserDAOException;
 import com.haurylenka.projects.reservation.factories.UserDAOFactory;
 import com.haurylenka.projects.reservation.forms.LoginForm;
 import com.haurylenka.projects.reservation.interfaces.UserDAO;
@@ -21,20 +23,25 @@ public class LoginAction extends Action {
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		LoginForm loginForm = (LoginForm) form;
-		String login = loginForm.getLogin();
-		String password = loginForm.getPassword();
-		UserDAO userDAO = UserDAOFactory.getUserDAOImpl();
-		User user = userDAO.getUser(login, password);
-		if (user == null) {
-			ActionMessages errors = new ActionMessages();
-			errors.add("login", new ActionMessage("auth.err.login.invalid"));
-			saveErrors(request, errors);
-			return mapping.getInputForward();
-		} else {
-			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
-			return mapping.findForward("success");
+		String login = null;
+		try {
+			LoginForm loginForm = (LoginForm) form;
+			login = loginForm.getLogin();
+			String password = loginForm.getPassword();
+			UserDAO userDAO = UserDAOFactory.getUserDAOImpl();
+			User user = userDAO.getUser(login, password);
+			if (user == null) {
+				ActionMessages errors = new ActionMessages();
+				errors.add("login", new ActionMessage("auth.err.login.invalid"));
+				saveErrors(request, errors);
+				return mapping.getInputForward();
+			} else {
+				HttpSession session = request.getSession();
+				session.setAttribute("user", user);
+				return mapping.findForward("success");
+			}
+		} catch (UserDAOException e) {
+			throw new ReservationException("Unable to login the user " + login, e);
 		}
 	}
 	
