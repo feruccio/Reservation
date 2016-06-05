@@ -29,7 +29,6 @@ public class ReservationTag extends TagSupport {
 				ReservationDAO resDAO = ReservationDAOFactory.getResrvationDAO();
 				reservation = resDAO.getReaservation(login);
 				session.setAttribute("reservation", reservation);
-				session.setAttribute("components", reservation.getComponents());
 			}
 		} catch (ReservationDAOException e) {
 			throw new ReservationException(

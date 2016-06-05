@@ -9,6 +9,6 @@
 		<put name="footer" value="/pages/footer.jsp"></put>
 	</definition>
 	<definition name=".main.auth" extends=".main">
-		<put name="header" value="/pages/header-auth.jsp"></put>
+		<put name="header" value="/pages/auth/header-auth.jsp"></put>
 	</definition>
 </tiles-definitions>

@@ -7,6 +7,8 @@ public class Reservation {
 	private String code;
 	private String description;
 	private List<ResComponent> components;
+	private Customer customer;
+	private FareFamily fareFamily;
 	
 	public String getCode() {
 		return code;
@@ -30,6 +32,22 @@ public class Reservation {
 	
 	public void setComponents(List<ResComponent> components) {
 		this.components = components;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public FareFamily getFareFamily() {
+		return fareFamily;
+	}
+
+	public void setFareFamily(FareFamily fareFamily) {
+		this.fareFamily = fareFamily;
 	}
 	
 }

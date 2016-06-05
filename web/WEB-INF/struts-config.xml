@@ -10,6 +10,10 @@
 		<form-bean name="LoginForm" type="com.haurylenka.projects.reservation.forms.LoginForm"/>
 	</form-beans>
 	
+	<global-exceptions>
+		<exception key="error.msg.error.key" type="java.lang.Exception" path="/error.jsp"/>
+	</global-exceptions>
+	
 	<action-mappings>
 		<action path="/login" type="com.haurylenka.projects.reservation.actions.LoginAction"
 				name="LoginForm"
@@ -20,7 +24,11 @@
 		</action>
 		
 		<action path="/auth/logout" type="com.haurylenka.projects.reservation.actions.LogoutAction">
-			<forward name="success" path="/index.jsp"/>
+			<forward name="success" path="/index.jsp" redirect="true"/>
+		</action>
+		
+		<action path="/changeLocale" type="com.haurylenka.projects.reservation.actions.ChangeLocale">
+			<forward name="success" path="/index.jsp" redirect="true"/>
 		</action>
 	</action-mappings>
 	

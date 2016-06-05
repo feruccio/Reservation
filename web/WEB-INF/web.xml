@@ -5,7 +5,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
 	<display-name>Reservation</display-name>
-	
+
 	<filter>
 		<filter-name>AuthFilter</filter-name>
 		<filter-class>com.haurylenka.projects.reservation.filters.AuthFilter</filter-class>
