@@ -4,13 +4,13 @@ import javax.servlet.ServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
-import com.haurylenka.projects.reservation.beans.Reservation;
+import com.haurylenka.projects.reservation.beans.FareFamily;
 import com.haurylenka.projects.reservation.exceptions.ReservationDAOException;
 import com.haurylenka.projects.reservation.exceptions.ReservationException;
 import com.haurylenka.projects.reservation.factories.ReservationDAOFactory;
 import com.haurylenka.projects.reservation.interfaces.ReservationDAO;
 
-public class ReservationTag extends TagSupport {
+public class FareFamilyTag extends TagSupport {
 
 	private static final long serialVersionUID = 1L;
 	private String code;
@@ -20,11 +20,11 @@ public class ReservationTag extends TagSupport {
 		try {
 			ServletRequest request = pageContext.getRequest();
 			ReservationDAO resDAO = ReservationDAOFactory.getResrvationDAO();
-			Reservation reservation = resDAO.getReservation(code);
-			request.setAttribute("reservation", reservation);
+			FareFamily fareFamily = resDAO.getFareFamily(code);
+			request.setAttribute("fareFamily", fareFamily);
 		} catch (ReservationDAOException e) {
 			throw new ReservationException(
-					"Unable to get the reservation with code " + code, e);
+					"Unable to get the fare family for code " + code, e);
 		}
 		return SKIP_BODY;
 	}
@@ -32,9 +32,9 @@ public class ReservationTag extends TagSupport {
 	public String getCode() {
 		return code;
 	}
-
+	
 	public void setCode(String code) {
 		this.code = code;
 	}
-	
+
 }

@@ -9,11 +9,31 @@
     <short-name>res</short-name>
     <uri>http://projects.haurylenka.com/tags-reservation</uri>
     <tag>
-        <name>set</name>
+        <name>setReservation</name>
         <tag-class>com.haurylenka.projects.reservation.tags.ReservationTag</tag-class>
         <body-content>empty</body-content>
         <attribute>
-            <name>var</name>
+            <name>code</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <name>setCustomer</name>
+        <tag-class>com.haurylenka.projects.reservation.tags.CustomerTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>code</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <name>setFareFamily</name>
+        <tag-class>com.haurylenka.projects.reservation.tags.FareFamilyTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>code</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>

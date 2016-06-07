@@ -6,12 +6,11 @@
 <html>
 	<body>
 		<div class="container">
-			<res:set var="reservation"/>
-			<logic:empty name="reservation">
+			<res:setCustomer code=""/>
+			<logic:empty name="customer">
 				<bean:message key="customer.msg.customer.absent"/>
 			</logic:empty>
-			<logic:notEmpty name="reservation">
-				<bean:define id="customer" name="reservation" property="customer"/>
+			<logic:notEmpty name="customer">
 				<div>
 					<bean:message key="customer.msg.customer.email"/>
 					<bean:write name="customer" property="email"/>

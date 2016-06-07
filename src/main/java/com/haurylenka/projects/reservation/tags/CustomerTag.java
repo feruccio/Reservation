@@ -4,14 +4,14 @@ import javax.servlet.ServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
-import com.haurylenka.projects.reservation.beans.Reservation;
+import com.haurylenka.projects.reservation.beans.Customer;
 import com.haurylenka.projects.reservation.exceptions.ReservationDAOException;
 import com.haurylenka.projects.reservation.exceptions.ReservationException;
 import com.haurylenka.projects.reservation.factories.ReservationDAOFactory;
 import com.haurylenka.projects.reservation.interfaces.ReservationDAO;
 
-public class ReservationTag extends TagSupport {
-
+public class CustomerTag extends TagSupport {
+	
 	private static final long serialVersionUID = 1L;
 	private String code;
 	
@@ -20,11 +20,11 @@ public class ReservationTag extends TagSupport {
 		try {
 			ServletRequest request = pageContext.getRequest();
 			ReservationDAO resDAO = ReservationDAOFactory.getResrvationDAO();
-			Reservation reservation = resDAO.getReservation(code);
-			request.setAttribute("reservation", reservation);
+			Customer customer = resDAO.getCustomer(code);
+			request.setAttribute("customer", customer);
 		} catch (ReservationDAOException e) {
 			throw new ReservationException(
-					"Unable to get the reservation with code " + code, e);
+					"Unable to get the customer for code " + code, e);
 		}
 		return SKIP_BODY;
 	}
@@ -36,5 +36,5 @@ public class ReservationTag extends TagSupport {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	
+
 }

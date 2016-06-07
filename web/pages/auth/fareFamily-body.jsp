@@ -6,12 +6,11 @@
 <html>
 	<body>
 		<div class="container">
-			<res:set var="reservation"/>
-			<logic:empty name="reservation">
+			<res:setFareFamily code=""/>
+			<logic:empty name="fareFamily">
 				<bean:message key="fareFamily.msg.fareFamily.absent"/>
 			</logic:empty>
-			<logic:notEmpty name="reservation">
-				<bean:define id="fareFamily" name="reservation" property="fareFamily"/>
+			<logic:notEmpty name="fareFamily">
 				<div>
 					<bean:message key="fareFamily.msg.fareFamily.code"/>
 					<bean:write name="fareFamily" property="fareFamilyCode"/>

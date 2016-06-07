@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
 import com.haurylenka.projects.reservation.factories.UserDAOFactory;
 
 public class ReservationUtil {
@@ -32,6 +36,18 @@ public class ReservationUtil {
 				stream.close();
 			}
 		}
+	}
+	
+	public static InitialContext getInitialContext() 
+			throws IOException, NamingException {
+		Properties env = new Properties();
+		env.put(Context.INITIAL_CONTEXT_FACTORY, 
+				"org.jboss.naming.NamingContextFactory");
+		env.put(Context.URL_PKG_PREFIXES, 
+				"org.jboss.naming:org.jnp.interfaces");
+		String jndiUrl = getProperty("JNDI_URL");
+		env.put(Context.PROVIDER_URL, jndiUrl);
+		return new InitialContext(env);
 	}
 	
 }

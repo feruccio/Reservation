@@ -26,7 +26,7 @@ public class XMLReservationDAOImpl implements ReservationDAO {
 	private static final String TARGET = "reservationXMLFileName";
 
 	@Override
-	public Reservation getReaservation(String login) 
+	public Reservation getReservation(String code) 
 			throws ReservationDAOException {
 		SAXBuilder builder = new SAXBuilder();
 		String fileName = null;
@@ -141,6 +141,36 @@ public class XMLReservationDAOImpl implements ReservationDAO {
 			}
 		}
 		return components;
+	}
+
+	@Override
+	public List<ResComponent> getResComponents(String code, String componentTypeCode) throws ReservationDAOException {
+		List<ResComponent> components = null;
+		Reservation reservation = getReservation(code);
+		if (reservation != null) {
+			components = reservation.getComponents();
+		}
+		return components;
+	}
+
+	@Override
+	public Customer getCustomer(String code) throws ReservationDAOException {
+		Customer customer = null;
+		Reservation reservation = getReservation(code);
+		if (reservation != null) {
+			customer = reservation.getCustomer();
+		}
+		return customer;
+	}
+
+	@Override
+	public FareFamily getFareFamily(String code) throws ReservationDAOException {
+		FareFamily fareFamily = null;
+		Reservation reservation = getReservation(code);
+		if (reservation != null) {
+			fareFamily = reservation.getFareFamily();
+		}
+		return fareFamily;
 	}
 
 }

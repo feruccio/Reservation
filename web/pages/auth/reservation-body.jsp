@@ -6,7 +6,7 @@
 <html>
 	<body>
 		<div class="container">
-			<res:set var="reservation"/>
+			<res:setReservation code=""/>
 			<logic:empty name="reservation">
 				<bean:message key="reservation.msg.reservation.absent"/>
 			</logic:empty>
